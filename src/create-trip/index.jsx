@@ -13,7 +13,7 @@ import { chatSession } from "@/service/AIModal";
 import { getAuth, onAuthStateChanged } from "firebase/auth"; // Firebase authentication methods
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/service/firebase";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CreateTrip() {
   const [query, setQuery] = useState(""); // State to hold input field value
