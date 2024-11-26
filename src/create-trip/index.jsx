@@ -134,7 +134,7 @@ function CreateTrip() {
               {/* New Additional Animated Ring */}
               <div className="absolute w-36 h-36 border-4 border-dashed border-purple-500 border-opacity-70 rounded-full animate-pulse"></div>
 
-              <div className="absolute w-44 h-44 border-4 border-dashed border-indigo-600 border-opacity-70 rounded-full animate-spin"></div>
+              <div className="absolute w-16 h-16 border-4 border-dashed border-purple-500 border-opacity-70 rounded-full animate-pulse"></div>
             </div>
 
             {/* Loading Text */}
