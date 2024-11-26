@@ -1,10 +1,11 @@
 import React from "react";
 
 function Hotels({ trip }) {
-  // Function to generate Google Maps link for hotel address
-  const openInGoogleMaps = (address) => {
+  // Function to generate Google Maps link for hotel name and address
+  const openInGoogleMaps = (name, address) => {
+    const searchQuery = `${name}, ${address}`;
     const googleMapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(
-      address
+      searchQuery
     )}`;
     window.open(googleMapsUrl, "_blank"); // Opens in a new tab
   };
@@ -18,7 +19,9 @@ function Hotels({ trip }) {
           <div
             key={index}
             className="hover:scale-105 transition-all cursor-pointer"
-            onClick={() => openInGoogleMaps(hotel?.hotelAddress)}
+            onClick={() =>
+              openInGoogleMaps(hotel?.hotelName, hotel?.hotelAddress)
+            }
           >
             <img src="/placeholder.jpg" className="rounded-lg" />
             <div className="my-2 flex flex-col">
