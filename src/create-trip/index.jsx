@@ -55,12 +55,17 @@ function CreateTrip() {
     setLoading(true); // Set loading to true when the trip is being generated
 
     if (
-      (formData?.noOfDays > 5 && !formData?.budget) ||
+      !formData?.budget ||
       !formData.location ||
       !formData?.traveler ||
       !formData?.noOfDays
     ) {
       toast("Please fill all the details.");
+      setLoading(false); // Set loading to false if validation fails
+      return;
+    }
+    if (formData?.noOfDays > 10) {
+      toast("Please fill Days less than 10.");
       setLoading(false); // Set loading to false if validation fails
       return;
     }
