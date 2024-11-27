@@ -3,8 +3,8 @@ import { Button } from "../ui/Button";
 import { Link } from "react-router-dom";
 function Hero() {
   return (
-    <div className="flex flex-col items-center mx-56  max-480:mx-12 gap-9">
-      <h1 className="font-extrabold text-[50px] max-480:text-[30px] text-center mt-16">
+    <div className="flex flex-col items-center mx-56  max-600:mx-12 gap-9">
+      <h1 className="font-extrabold text-[50px] max-600:text-[30px] text-center mt-16">
         <span className="text-[#f56551]">
           Discover your Next Adventure with AI:
         </span>{" "}

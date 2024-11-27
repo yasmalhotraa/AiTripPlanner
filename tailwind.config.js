@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        "max-480": { max: "480px" },
+        "max-600": { max: "600px" },
       },
       borderRadius: {
         lg: "var(--radius)",
