@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
 
 function UserTripCardItem({ trip, onDelete }) {
   return (
@@ -31,9 +32,9 @@ function UserTripCardItem({ trip, onDelete }) {
               e.preventDefault(); // Prevent navigating to the trip details page
               onDelete(); // Trigger the delete action
             }}
-            className="mt-2 mb-1 mx-1 text-white bg-red-500 px-2 py-[2px] rounded-xl text-sm"
+            className="mt-2 mb-1 mx-1 text-white bg-red-500 px-4 py-1 rounded-full text-2xl"
           >
-            Delete
+            <MdDelete />
           </button>
         </div>
       </div>
