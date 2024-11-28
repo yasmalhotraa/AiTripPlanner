@@ -31,7 +31,7 @@ function LoginForm({ onClose }) {
   };
 
   return (
-    <div className="absolute z-10 top-0 left-0 w-full h-full bg-black bg-opacity-60 flex justify-center items-center">
+    <div className="absolute z-10 top-0 left-0 w-full h-full max-600:p-5 bg-black bg-opacity-60 flex justify-center items-center">
       <div className="bg-white p-5 rounded shadow-md w-96 ">
         <div className="flex gap-1 mb-5 items-center">
           <img src="/logo.svg" alt="logo" className="w-14" />
