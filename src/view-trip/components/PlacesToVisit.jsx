@@ -15,8 +15,12 @@ function PlacesToVisit({ trip }) {
                 <div className="" key={index}>
                   <h2 className="font-medium text-sm text-orange-600">
                     {typeof place.time === "string"
-                      ? place.time
-                      : `${place.time.from} - ${place.time.to}`}
+                      ? place.time || "Time not available"
+                      : place.time
+                      ? `${place.time.from || "Start time not set"} - ${
+                          place.time.to || "End time not set"
+                        }`
+                      : "Time not available"}
                   </h2>
 
                   <PlaceCardItem place={place} />
