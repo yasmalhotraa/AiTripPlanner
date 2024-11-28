@@ -22,9 +22,12 @@ function PlaceCardItem({ place }) {
       />
       <div>
         <h2 className="font-bold text-lg flex items-center">
-          {place.placeName}
+          {place.placeName || "Place Name"}
         </h2>
-        <p className="text-sm text-gray-400">{place.placeDetails}</p>
+        <p className="text-sm text-gray-400">
+          {place.placeDetails || "place details not available."}
+        </p>
+
         <p className="text-sm text-gray-500">
           🎟️
           {typeof place.ticketPricing === "string"
@@ -34,7 +37,7 @@ function PlaceCardItem({ place }) {
             : "No pricing available"}{" "}
         </p>
 
-        <p className="text-sm">⭐ {place.rating}</p>
+        <p className="text-sm">⭐ {place.rating || "ratings not available"}</p>
 
         <h2 className="flex justify-end mx-5 text-l">
           <span className="text-xs text-gray-500">Click to Get Location</span>{" "}
