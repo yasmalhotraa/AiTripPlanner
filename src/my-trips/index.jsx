@@ -12,8 +12,9 @@ import { useNavigate } from "react-router-dom";
 import UserTripCardItem from "./components/UserTripCardItem";
 
 function MyTrips() {
-  const navigate = useNavigate(); // Fixed: Corrected `useNavigate` import
+  const navigate = useNavigate();
   const [userTrips, setUserTrips] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     // Fetch user trips only once when the component is mounted
@@ -41,11 +42,13 @@ function MyTrips() {
         setUserTrips(trips); // Set all trips at once
       } catch (error) {
         console.error("Error fetching user trips:", error);
+      } finally {
+        setLoading(false); // Set loading to false after data is fetched
       }
     };
 
     fetchUserTrips();
-  }, [navigate]); // Add `navigate` as a dependency since it is used in the effect
+  }, [navigate]);
 
   // Delete trip function
   const deleteTrip = async (tripId) => {
@@ -65,20 +68,29 @@ function MyTrips() {
       <h2 className="font-bold text-3xl">My Trips</h2>
 
       <div className="grid max-600:grid-cols-1 grid-cols-2 mt-10 md:grid-cols-3 gap-5">
-        {userTrips?.length > 0
-          ? userTrips.map((trip, index) => (
-              <UserTripCardItem
-                key={index}
-                trip={trip}
-                onDelete={() => deleteTrip(trip.id)} // Pass delete function to card
-              />
-            ))
-          : [1, 2, 3, 4, 5, 6].map((item, index) => (
-              <div
-                key={index}
-                className="h-[200px] w-full bg-slate-200 animate-pulse rounded-xl"
-              ></div>
-            ))}
+        {loading ? (
+          // Show loading skeleton or spinner while fetching trips
+          [1, 2, 3, 4, 5, 6].map((item, index) => (
+            <div
+              key={index}
+              className="h-[200px] w-full bg-slate-200 animate-pulse rounded-xl"
+            ></div>
+          ))
+        ) : userTrips.length > 0 ? (
+          // Display trips once they are fetched
+          userTrips.map((trip, index) => (
+            <UserTripCardItem
+              key={index}
+              trip={trip}
+              onDelete={() => deleteTrip(trip.id)} // Pass delete function to card
+            />
+          ))
+        ) : (
+          // Show no trips found message after data is fetched
+          <div className="col-span-full text-center mt-10 text-xl text-gray-500">
+            No trips found.
+          </div>
+        )}
       </div>
     </div>
   );

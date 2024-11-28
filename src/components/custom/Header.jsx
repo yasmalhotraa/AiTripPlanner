@@ -1,19 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "../ui/Button";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  deleteUser,
+} from "firebase/auth";
 import LoginForm from "./LoginForm";
 import { toast } from "sonner";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
+import { db } from "@/service/firebase"; // Ensure correct Firestore import
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { IoMdMenu } from "react-icons/io";
+import CustomConfirmationModal from "./CustomConfirmationModal"; // Import the custom modal
 
 function Header() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [user, setUser] = useState(null);
-  const [showMenu, setShowMenu] = useState(false); // State to toggle the menu
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // State for showing confirmation modal
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -50,16 +65,56 @@ function Header() {
     }
   };
 
+  const handleDeleteAccount = async () => {
+    setShowDeleteModal(false); // Close the confirmation modal
+
+    try {
+      const auth = getAuth();
+      const currentUser = auth.currentUser;
+
+      if (!currentUser) {
+        toast("No user is logged in.");
+        return;
+      }
+
+      // Delete all trips associated with the user's email
+      const tripsQuery = query(
+        collection(db, "AiTrips"),
+        where("userEmail", "==", currentUser.email)
+      );
+      const querySnapshot = await getDocs(tripsQuery);
+
+      const deletePromises = querySnapshot.docs.map((tripDoc) =>
+        deleteDoc(doc(db, "AiTrips", tripDoc.id))
+      );
+      await Promise.all(deletePromises);
+
+      // Delete the user's Firebase Authentication account
+      await deleteUser(currentUser);
+
+      // Clear localStorage and reset state
+      localStorage.clear();
+      setUser(null);
+
+      toast("Account and all associated data deleted successfully.");
+      window.location.reload();
+    } catch (error) {
+      if (error.code === "auth/requires-recent-login") {
+        toast(
+          "Please re-authenticate to delete your account. Log out and log back in to try again."
+        );
+      } else {
+        toast(`Error deleting account: ${error.message}`);
+      }
+    }
+  };
+
   const toggleLoginForm = () => {
     setShowLoginForm((prevState) => {
       const newState = !prevState;
       document.body.style.overflow = newState ? "hidden" : "auto";
       return newState;
     });
-  };
-
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
   };
 
   return (
@@ -98,17 +153,17 @@ function Header() {
               </a>
             </div>
 
-            {/* Show three dots for screens smaller or equal to 600px */}
+            {/* Popover menu for smaller screens */}
             <div className="hidden max-600:flex items-center gap-2">
               <Popover>
                 <PopoverTrigger className="bg-white p-0 border-none">
                   <IoMdMenu className="text-black bg-white text-[35px] " />
                 </PopoverTrigger>
-                <PopoverContent className="p-0 w-44  ">
+                <PopoverContent className="p-0 w-44">
                   <a href="/create-trip">
                     <Button
                       variant="outline"
-                      className="w-full  rounded-none text-md "
+                      className="w-full rounded-none text-md"
                     >
                       + Create Trip
                     </Button>
@@ -133,9 +188,20 @@ function Header() {
                 />
               </PopoverTrigger>
               <PopoverContent>
-                <h2 className="font-semibold text-md">{user?.displayName}</h2>
-                <Button onClick={handleSignOut} className="cursor-pointer mt-2">
+                <h2 className="font-semibold text-md max-600:text-sm">
+                  {user?.displayName}
+                </h2>
+                <Button
+                  onClick={handleSignOut}
+                  className="cursor-pointer mt-2 max-600:text-[13px]"
+                >
                   Sign Out
+                </Button>
+                <Button
+                  onClick={() => setShowDeleteModal(true)} // Open the confirmation modal
+                  className="cursor-pointer mt-2 bg-red-500 ml-2 text-white max-600:text-[13px]"
+                >
+                  Delete Account
                 </Button>
               </PopoverContent>
             </Popover>
@@ -144,7 +210,17 @@ function Header() {
           <Button onClick={toggleLoginForm}>Sign In</Button>
         )}
       </div>
+
       {showLoginForm && <LoginForm onClose={toggleLoginForm} />}
+
+      {/* Custom Confirmation Modal */}
+      {showDeleteModal && (
+        <CustomConfirmationModal
+          message="Are you sure you want to delete your account? This action is irreversible."
+          onConfirm={handleDeleteAccount}
+          onCancel={() => setShowDeleteModal(false)} // Close the modal
+        />
+      )}
     </div>
   );
 }
