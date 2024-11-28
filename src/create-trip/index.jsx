@@ -144,7 +144,7 @@ function CreateTrip() {
 
             {/* Loading Text */}
             <p className="text-white text-lg font-semibold">
-              Please wait, Loading...
+              Preparing your journey, please wait...
             </p>
           </div>
         </div>
