@@ -18,7 +18,7 @@ function Hero() {
         <Button>Get Started, it's Free</Button>
       </Link>
 
-      <img src="/landing.png" className="w-full h-auto mb-5" />
+      <img src="/landing.png" className="w-full h-auto mb-10" />
     </div>
   );
 }
