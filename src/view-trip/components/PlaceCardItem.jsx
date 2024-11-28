@@ -25,7 +25,15 @@ function PlaceCardItem({ place }) {
           {place.placeName}
         </h2>
         <p className="text-sm text-gray-400">{place.placeDetails}</p>
-        <p className="text-sm text-gray-500">🎟️ {place.ticketPricing}</p>
+        <p className="text-sm text-gray-500">
+          🎟️
+          {typeof place.ticketPricing === "string"
+            ? place.ticketPricing // Render if it's a string
+            : place.ticketPricing?.amount && place.ticketPricing?.currency
+            ? `${place.ticketPricing.amount} ${place.ticketPricing.currency}` // Render if it's an object with amount and currency
+            : "No pricing available"}{" "}
+        </p>
+
         <p className="text-sm">⭐ {place.rating}</p>
 
         <h2 className="flex justify-end mx-5 text-l">
