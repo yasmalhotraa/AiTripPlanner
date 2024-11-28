@@ -126,7 +126,7 @@ function CreateTrip() {
   return (
     <div className="max-600:px-3 sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10">
       {loading && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-60 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-70 flex justify-center items-center z-50">
           <div className="flex flex-col items-center gap-5 justify-center space-y-4">
             {/* Spinner with more animations */}
             <div className="relative flex justify-center items-center">
