@@ -131,15 +131,15 @@ function CreateTrip() {
             {/* Spinner with more animations */}
             <div className="relative flex justify-center items-center">
               {/* Outer Spinner with Rotating Border */}
-              <div className="w-28 h-28 border-8 border-dashed border-indigo-600 border-opacity-70 rounded-full animate-pulse"></div>
+              <div className="w-28 h-28 border-8 border-dashed border-indigo-600 border-opacity-100 rounded-full animate-pulse"></div>
 
               {/* Inner Spinner with Pulse Effect */}
-              <div className="absolute w-20 h-20 border-4 border-dashed border-white border-opacity-50 rounded-full animate-ping"></div>
+              <div className="absolute w-20 h-20 border-4 border-dashed border-white border-opacity-70 rounded-full animate-ping"></div>
 
               {/* New Additional Animated Ring */}
-              <div className="absolute w-36 h-36 border-4 border-dashed border-purple-500 border-opacity-80 rounded-full animate-pulse"></div>
+              <div className="absolute w-36 h-36 border-4 border-dashed border-purple-500 border-opacity-100 rounded-full animate-pulse"></div>
 
-              <div className="absolute w-16 h-16 border-4 border-dashed border-purple-500 border-opacity-70 rounded-full animate-pulse"></div>
+              <div className="absolute w-16 h-16 border-4 border-dashed border-purple-500 border-opacity-100 rounded-full animate-pulse"></div>
             </div>
 
             {/* Loading Text */}

@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/Button";
 import React from "react";
-import { IoIosSend } from "react-icons/io";
 
 function InfoSection({ trip }) {
   return (
@@ -25,9 +23,6 @@ function InfoSection({ trip }) {
             </h2>
           </div>
         </div>
-        <Button>
-          <IoIosSend />
-        </Button>
       </div>
     </div>
   );
