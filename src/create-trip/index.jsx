@@ -155,7 +155,7 @@ function CreateTrip() {
         Just provide some basic information, and our trip planner will generate
         a customised itinerary based on your preferences 🏕️.
       </p>
-      <div className="mt-20 flex flex-col gap-10">
+      <div className="max-600:mt-12 mt-20 flex flex-col max-600:gap-5 gap-10">
         <div className="w-[100%] mx-auto bg-white">
           <h2 className="text-xl my-3 font-medium">
             What is destination of choice?
@@ -180,9 +180,9 @@ function CreateTrip() {
         </div>
       </div>
 
-      <div>
+      <div className="max-600:mt-5">
         <h2 className="text-xl my-3 font-medium">What is your Budget?</h2>
-        <div className="grid grid-cols-3 gap-5 mt-5">
+        <div className="grid grid-cols-3 gap-5 mt-5 max-600:gap-2 max-600:grid-cols-2">
           {SelectBudgetOptions.map((item, index) => (
             <div
               key={index}
@@ -198,10 +198,10 @@ function CreateTrip() {
         </div>
       </div>
       <div>
-        <h2 className="text-xl my-3 font-medium">
+        <h2 className="text-xl my-3 max-600:mt-5 font-medium">
           Who do you plan to travel with for your next adventure?
         </h2>
-        <div className="grid grid-cols-3 gap-5 mt-5">
+        <div className="grid grid-cols-3 max-600:grid-cols-2 gap-5 mt-5 max-600:gap-2">
           {SelectTravelsList.map((item, index) => (
             <div
               key={index}

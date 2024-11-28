@@ -13,12 +13,12 @@ function PlaceCardItem({ place }) {
 
   return (
     <div
-      className="border rounded-xl p-3 mt-2 flex gap-5 hover:scale-105 transition-all hover:shadow-md cursor-pointer"
+      className="border rounded-xl p-3 mt-2 flex max-600:flex-col max-600:gap-2 gap-5 hover:scale-105 transition-all hover:shadow-md cursor-pointer"
       onClick={() => openInGoogleMaps(place?.placeName)}
     >
       <img
         src={"/PlacesPlaceholder.jpg"}
-        className="w-[140px] h-[110px] rounded-xl"
+        className="w-[140px] h-[110px] max-600:w-full rounded-xl"
       />
       <div>
         <h2 className="font-bold text-lg flex items-center">

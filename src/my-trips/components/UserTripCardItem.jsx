@@ -7,7 +7,7 @@ function UserTripCardItem({ trip, onDelete }) {
       to={"/view-trip/" + trip?.id}
       className="text-black hover:text-red-500"
     >
-      <div className="border-[1.5px] p-1 rounded-xl hover:scale-105 transition-all">
+      <div className="border-[1.5px] max-600:flex max-600:flex-col p-1 rounded-xl hover:scale-105 transition-all">
         <img
           src="/placeholder.jpg"
           className="object-cover rounded-xl h-[150px]"
