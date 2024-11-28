@@ -64,16 +64,16 @@ function Header() {
 
   return (
     <div className="p-3 shadow-md flex justify-between items-center px-5">
-      <div className="flex gap-1 justify-center items-center">
-        <a href="/">
+      <a href="/">
+        <div className="flex gap-1 justify-center items-center">
           <img src="/logo.svg" alt="logo" className="w-14" />
           <h2 className="font-extrabold text-2xl max-600:text-lg text-[#8046fd]">
             <span>AI</span>
             <span>Trip</span>
             Planner
           </h2>
-        </a>
-      </div>
+        </div>
+      </a>
 
       <div className="relative">
         {user ? (
