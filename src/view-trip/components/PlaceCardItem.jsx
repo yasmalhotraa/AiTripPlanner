@@ -18,7 +18,7 @@ function PlaceCardItem({ place }) {
     >
       <img
         src={"/PlacesPlaceholder.jpg"}
-        className="w-[140px] h-[110px] max-600:w-full rounded-xl"
+        className="w-[140px] h-[110px] max-600:w-full max-600:h-[150px] rounded-xl"
       />
       <div>
         <h2 className="font-bold text-lg flex items-center">

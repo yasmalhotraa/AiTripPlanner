@@ -102,11 +102,11 @@ function Header() {
                 <PopoverTrigger className="bg-white p-0 border-none">
                   <IoMdMenu className="text-black bg-white text-[35px] " />
                 </PopoverTrigger>
-                <PopoverContent className="p-0 w-44 ">
+                <PopoverContent className="p-0 w-44  ">
                   <a href="/create-trip">
                     <Button
                       variant="outline"
-                      className="w-full rounded-none text-md "
+                      className="w-full  rounded-none text-md "
                     >
                       + Create Trip
                     </Button>
@@ -114,7 +114,7 @@ function Header() {
                   <a href="/my-trips">
                     <Button
                       variant="outline"
-                      className="w-full rounded-none text-sm"
+                      className="w-full rounded-none text-md"
                     >
                       My Trips
                     </Button>
