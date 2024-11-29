@@ -12,7 +12,7 @@ const Toaster = ({ ...props }) => {
       toastOptions={{
         classNames: {
           toast:
-            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border border-black group-[.toaster]:shadow-lg mb-10", // Added border-black
+            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border border-black group-[.toaster]:shadow-lg max-600:mb-16 max-600:border-none", // Added border-black
           description: "group-[.toast]:text-muted-foreground",
           actionButton:
             "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
