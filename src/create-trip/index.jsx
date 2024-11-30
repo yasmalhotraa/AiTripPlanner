@@ -64,7 +64,7 @@ function CreateTrip() {
       setLoading(false); // Set loading to false if validation fails
       return;
     }
-    if (formData?.noOfDays > 10) {
+    if (formData?.noOfDays > 15) {
       toast("Please fill Days less than 10.");
       setLoading(false); // Set loading to false if validation fails
       return;
